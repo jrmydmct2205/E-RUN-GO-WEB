@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import Auth from './pages/Auth';
+import Sidebar from './components/Sidebar';
 
-function App() {
-  const [count, setCount] = useState(0)
+// Import all CSS files
+import './components.css';
+import './pages.css';
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+const App = () => {
+    // Basic authentication state simulation
+    const [isAuthenticated, setIsAuthenticated] = React.useState(false); 
 
-export default App
+    return (
+        <Router>
+            <Routes>
+                {/* Auth route */}
+                <Route path="/auth" element={<Auth setIsAuthenticated={setIsAuthenticated} />} />
+
+                {/* Protected routes */}
+                <Route path="*" element={
+                    isAuthenticated ? (
+                        <div className="app-container">
+                            <Sidebar />
+                            <div className="main-content">
+                                <Routes>
+                                    <Route path="/" element={<Dashboard />} />
+                                    {/* Add more admin routes here (e.g., /settings, /drones) */}
+                                    <Route path="*" element={<Navigate to="/" replace />} />
+                                </Routes>
+                            </div>
+                        </div>
+                    ) : (
+                        <Navigate to="/auth" replace />
+                    )
+                } />
+            </Routes>
+        </Router>
+    );
+};
+
+export default App;
