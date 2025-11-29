@@ -21,8 +21,8 @@ const recentOrders = [
 const transactions = [
     { id: 'TRX-8891', user: 'Alice Smith', orderId: 'ORD-1001', amount: 45.00, method: 'Credit Card', status: 'Completed', date: '2025-11-29 10:30 AM' },
     { id: 'TRX-8892', user: 'Bob Jones', orderId: 'ORD-1002', amount: 22.50, method: 'PayPal', status: 'Pending', date: '2025-11-29 11:15 AM' },
-    { id: 'TRX-8893', user: 'Charlie Day', orderId: 'ORD-1004', amount: 120.00, method: 'Credit Card', status: 'Completed', date: '2025-11-28 09:45 PM' },
-    { id: 'TRX-8894', user: 'Dana White', orderId: 'ORD-1005', amount: 15.00, method: 'Debit Card', status: 'Failed', date: '2025-11-28 08:20 AM' },
+    { id: 'TRX-8893', user: 'Charlie Day', orderId: 'ORD-1003', amount: 120.00, method: 'Credit Card', status: 'Completed', date: '2025-11-28 09:45 PM' },
+    { id: 'TRX-8894', user: 'Dana White', orderId: 'ORD-1004', amount: 15.00, method: 'Debit Card', status: 'Failed', date: '2025-11-28 08:20 AM' },
 ];
 
 const Dashboard = () => {
